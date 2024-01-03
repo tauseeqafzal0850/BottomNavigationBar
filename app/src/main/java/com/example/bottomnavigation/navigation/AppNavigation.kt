@@ -45,7 +45,12 @@ fun AppNavigation() {
                             }
                         },
                         icon = {
-                            Icon(imageVector = navItems.icon, contentDescription = "")
+                            val icon = if (currentDestination?.hierarchy?.any { it.route == navItems.route } == true) {
+                                navItems.selectedIcon
+                            } else {
+                                navItems.unselectedIcon
+                            }
+                            Icon(imageVector = icon, contentDescription = "")
                         },
                         label = { Text(text = navItems.title) })
                 }
